@@ -36,11 +36,11 @@ $(document).on('click', '.cel', theGame);
         x=parseInt($(this).attr('matrixlocation'))
         if(counter%2==0){
             games[x]=2
-            $(this).html('<img src="../images/banana_1.png" alt="Banana" height="100%" width="100%">');
+            $(this).html('<img src="images/banana_1.png" alt="Banana" height="100%" width="100%">');
             $('audio#banana')[0].play()
             gameSteps.unshift([['x',$(this).attr('matrixlocation')]])
         }
-        else{$(this).html('<img src="../images/fruit.png" alt="fruit" height="75%" width="75%">');
+        else{$(this).html('<img src="images/fruit.png" alt="fruit" height="75%" width="75%">');
         games[x]=1
         $('audio#aka')[0].play()
         gameSteps.unshift([['o',$(this).attr('matrixlocation')]])
