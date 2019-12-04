@@ -1,15 +1,15 @@
 
-charGamming=[0,0]
+//
 gameSteps=[]
+
 numberSimilar = 0
 let counter = 0
-//let array =[[0,0,0],[0,0,0],[0,0,0]]
-$('.game').css("visibility", "hidden");
+noWinner= true
+games=[]
+x=0
+
 $('.game').hide()   
 
-games=[]
- x=0
- y = 0
  
 
 $('#start').click(function(){
@@ -54,8 +54,8 @@ $(document).on('click', '.cel', theGame);
   
 
   function checkTie(gameSteps){
-    if(gameSteps==9){
-        alert('this is the end....hold your breath and count to ten!!!!')
+    if(gameSteps==games.length & noWinner){
+        alert('Tie is coming ')
     
     }
   }
@@ -149,22 +149,23 @@ function dilogCheck(matrix){
 
 
 function thisIsIt(i){
-
+    winner = null
     console.log(i)
     if(dilogCheck(i)||columCheck(i)||rawCheck(i)){
-        alert('baby shshshshsshsh dududaahah ')
+        noWinner =false
+        if(gameSteps[0][0][0]=='x'){
+            winner ='minion'
+            setTimeout(function(){$('audio#bababa')[0].play()},100)
+        }
+        else{
+            winner = 'crash'
+            setTimeout(function(){$('audio#crash1')[0].play()},100)
+        }
+        
+        setTimeout(function(){alert( `MR ${winner} won!!`)},200)
     }
     }
-    
 
-
-
-
-function cnsoleAlert(bb){
-    if(bb){
-        alert('yor god dammin right!!!!')
-     }
-    }
 
 
 
@@ -182,7 +183,7 @@ function modify(num,ch){
         $('.game').append(`<div class ='cel' matrixLocation='${k}'>`)  
         
     }
-    
+    //modifying the size of boxes for phones
     if(games.length==16){
         if (window.innerWidth <= 360){
             $('.game').find('.cel').css({'width':'23.48%','height':'23.55%'})
@@ -195,7 +196,7 @@ function modify(num,ch){
         }
 
         else{
-        $('.game').find('.cel').css({'width':'23%','height':'23%'})}
+        $('.game').find('.cel').css({'width':'23.67%','height':'23.67%'})}
      }
      if(games.length==25){
         if (window.innerWidth <= 360){
@@ -208,7 +209,7 @@ function modify(num,ch){
             $('.game').find('.cel').css({'width':'19.35%','height':'19.2%'})
         }
         else{
-         $('.game').find('.cel').css({'width':'18%','height':'18%'})}
+         $('.game').find('.cel').css({'width':'18.7%','height':'18.7%'})}
      }
      
      if(games.length==36){
@@ -216,11 +217,15 @@ function modify(num,ch){
             $('.game').find('.cel').css({'width':'15.15%','height':'15.3%'})
             
         }
-        if (window.innerWidth <= 800){
+        else if (window.innerWidth <= 320){
+            $('.game').find('.cel').css({'width':'13.4%','height':'15.0%'})
+            
+        }
+       else if (window.innerWidth <= 800){
             $('.game').find('.cel').css({'width':'16.03%','height':'16%'})
             
         }
-         else{$('.game').find('.cel').css({'width':'14%','height':'14%'})
+         else{$('.game').find('.cel').css({'width':'15.35%','height':'15.35%'})
      }
     }
 
@@ -229,5 +234,7 @@ function modify(num,ch){
     $('.game').show()   
 
 }
+$('tieBox').hide()
+
 
 
